@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Taskly</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<div class="wrapper">
+  <header>
+    <h1>Task<span>ly</span></h1>
+    <div class="byline">made by Bora Yuzbasi</div>
+    <div class="date-line" id="date-line"></div>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-num" id="stat-total">0</div><div class="stat-label">Total</div></div>
+    <div class="stat"><div class="stat-num" id="stat-active">0</div><div class="stat-label">Active</div></div>
+    <div class="stat"><div class="stat-num" id="stat-done">0</div><div class="stat-label">Done</div></div>
+  </div>
+
+  <div class="add-card">
+    <div class="add-row">
+      <input type="text" id="task-input" placeholder="Add a new task…" autocomplete="off"/>
+      <button class="btn-add" onclick="addTask()">+ Add</button>
+    </div>
+    <div class="meta-row">
+      <select id="task-priority">
+        <option value="low">🟢 Low priority</option>
+        <option value="med" selected>🟡 Medium priority</option>
+        <option value="high">🔴 High priority</option>
+      </select>
+      <input type="date" id="task-due"/>
+    </div>
+  </div>
+
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all"     onclick="setFilter(this,'all')">All</button>
+    <button class="filter-btn"        data-filter="active"  onclick="setFilter(this,'active')">Active</button>
+    <button class="filter-btn"        data-filter="done"    onclick="setFilter(this,'done')">Completed</button>
+    <button class="filter-btn"        data-filter="high"    onclick="setFilter(this,'high')">🔴 High</button>
+    <button class="filter-btn"        data-filter="overdue" onclick="setFilter(this,'overdue')">⚠️ Overdue</button>
+  </div>
+
+  <div id="task-list"></div>
+</div>
+
+<!-- Edit modal -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <h2>Edit Task</h2>
+    <input type="text" id="edit-text" placeholder="Task name"/>
+    <select id="edit-priority">
+      <option value="low">🟢 Low priority</option>
+      <option value="med">🟡 Medium priority</option>
+      <option value="high">🔴 High priority</option>
+    </select>
+    <input type="date" id="edit-due"/>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-save"   onclick="saveEdit()">Save</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
